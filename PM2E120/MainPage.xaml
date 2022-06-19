@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E120.MainPage">
+
+    <StackLayout>
+        <Label Text="Nota: Es posible que la aplicación requiera habilitar permisos manuales para la ubicación GPS."/>
+        <Label x:Name="lblId" IsVisible="False"/>
+        <Label Text="Latitud: "/>
+        <Label x:Name="lat"/>
+        <Label Text="Longitud: "/>
+        <Label x:Name="lon"/>
+        <Label Text="Descripcion"/>
+        <Entry x:Name="txtDescripcion" Placeholder="Ingrese la descripción del lugar"/>
+        
+        <Button x:Name="btnMostrarUbicacion" Text="Mostrar Ubicación" Clicked="btnMostrarUbicacion_Clicked"/>
+        <Button x:Name="btnGuardar" Text="Guardar" Clicked="btnGuardar_Clicked"/>
+        <Button x:Name="btnEliminar" Text="Eliminar" Clicked="btnEliminar_Clicked"  IsVisible="False"/>
+        <Button x:Name="btnSalir" Text="Cerrar Aplicación" Clicked="btnSalir_Clicked"/>
+
+        <ListView x:Name="listPersonas" ItemSelected="listPersonas_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding id}" Grid.Row="0" Grid.Column="0" TextColor="Blue"/>
+                            <Label Text="{Binding latitud}" Grid.Row="0" Grid.Column="1" TextColor="Gray"/>
+                            <Label Text="{Binding longitud}" Grid.Row="0" Grid.Column="2" TextColor="Blue"/>
+                            <Label Text="{Binding descripcion}" Grid.Row="0" Grid.Column="3" TextColor="Blue"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+    </StackLayout>
+
+</ContentPage>
