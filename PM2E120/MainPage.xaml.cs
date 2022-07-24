@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Plugin.Media.Abstractions;
+using Plugin.Media;
 
 namespace PM2E120
 {
     public partial class MainPage : ContentPage
     {
+        //prueba actualización
         double lati;
         double longi;
 
@@ -21,6 +24,9 @@ namespace PM2E120
             InitializeComponent();
             ubicacion();
             llenarDatos();
+
+            NavigationPage.SetHasNavigationBar(this, true);
+            this.Title = "Mi Camara";
         }
 
         
@@ -159,6 +165,28 @@ namespace PM2E120
         private void btnSalir_Clicked(object sender, EventArgs e)
         {
             System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
+
+        private async void btnCamara_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var miFoto = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
+                {
+                    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Rear,
+                    Name = DateTime.Now.ToString(),
+                    Directory = "FotosXamarin",
+                    SaveToAlbum = true
+                });
+                if (miFoto != null)
+                {
+                    imageCamara.Source = ImageSource.FromStream(() => { return miFoto.GetStream(); });
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message.ToString(), "Ok");
+            }
         }
     }
 }

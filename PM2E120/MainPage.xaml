@@ -5,6 +5,18 @@
 
     <StackLayout>
         <Label Text="Nota: Es posible que la aplicación requiera habilitar permisos manuales para la ubicación GPS."/>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="imageCamara" Grid.Row="0" Grid.Column="0"/>
+            <Button x:Name="btnCamara" Grid.Row="1" Grid.Column="0" Text="Tomar Foto" FontSize="34" HeightRequest="122"
+                    Margin="2" Clicked="btnCamara_Clicked"/>
+
+        </Grid>
+
         <Label x:Name="lblId" IsVisible="False"/>
         <Label Text="Latitud: "/>
         <Label x:Name="lat"/>
